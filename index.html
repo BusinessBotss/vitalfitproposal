@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Bots × Vital Fit - Propuesta de Colaboración</title>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-auto;
+      position: relative;
+    }
+
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+      animation: bgPulse 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    .content-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 100;
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 14px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .lang-btn.active {
+      background: #ffffff;
+      color: #06b6d4;
+      border-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Hero */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 50px 30px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .partnership-badge {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.25);
+      color: #FFD700;
+      border: 2px solid #FFD700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero-section h1 {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-section .subtitle {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* Card */
+    .proposal-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 18px;
+      padding: 40px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .proposal-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card-icon {
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .card-header h2 {
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .card-content h3 {
+      color: #FFD700;
+      font-size: 20px;
+      margin: 25px 0 15px 0;
+      font-weight: 700;
+    }
+
+    .card-content p {
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .card-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0;
+    }
+
+    .card-content li {
+      color: rgba(255, 255, 255, 0.95);
+      padding-left: 32px;
+      position: relative;
+      margin-bottom: 14px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .card-content li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #51cf66;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 255, 255, 0.2) 100%);
+      border: 2px solid #FFD700;
+      border-radius: 16px;
+      padding: 35px;
+      text-align: center;
+      margin: 30px 0;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+    }
+
+    .highlight-box .price {
+      font-size: 52px;
+      color: #FFD700;
+      font-weight: 900;
+      margin: 15px 0;
+      text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .highlight-box .price-label {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .highlight-box .price-note {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* Process Grid */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin: 35px 0;
+    }
+
+    .process-step {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .process-step:hover {
+      border-color: #FFD700;
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      background: #FFD700;
+      color: #06b6d4;
+      border-radius: 50%;
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
+    }
+
+    .process-step h3 {
+      font-size: 19px;
+      color: #ffffff;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .process-step p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 255, 255, 0.25) 100%);
+      border: 3px solid #FFD700;
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      margin: 50px 0;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 48px rgba(255, 215, 0, 0.3);
+    }
+
+    .cta-section h2 {
+      font-size: 38px;
+      color: #ffffff;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .cta-section p {
+      font-size: 19px;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .cta-icon {
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-section h1 {
+        font-size: 34px;
+      }
+      
+      .hero-section .subtitle {
+        font-size: 17px;
+      }
+      
+      .content-container {
+        padding: 40px 20px;
+      }
+
+      .language-selector {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+      }
+
+      .proposal-card {
+        padding: 30px 25px;
+      }
+
+      .card-header h2 {
+        font-size: 24px;
+      }
+    }
+
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="main-wrapper">
+   <div class="animated-bg"></div>
+   <div class="language-selector"><button class="lang-btn active" data-lang="es">ES</button> <button class="lang-btn" data-lang="en">EN</button> <button class="lang-btn" data-lang="it">IT</button> <button class="lang-btn" data-lang="fr">FR</button> <button class="lang-btn" data-lang="de">DE</button>
+   </div>
+   <main class="content-container" id="content"><!-- Content injected by JavaScript -->
+   </main>
+  </div>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script>
+    const translations = {
+      es: {
+        partnershipBadge: "Business Bots × Vital Fit",
+        heroTitle: "Propuesta de Colaboración Digital",
+        heroSubtitle: "Transformación digital con diagnóstico estratégico previo",
+
+        whatIsTitle: "¿Qué es este proyecto?",
+        whatIsIcon: "🎯",
+        whatIsIntro: "Una colaboración estratégica entre Business Bots Solutions y Vital Fit para crear un ecosistema digital de membresía que:",
+        whatIsList: [
+          "Genere ingresos recurrentes digitales complementarios al gimnasio",
+          "Aumente el valor percibido y la fidelización de los clientes actuales",
+          "Abra un nuevo canal de ingresos con membresías 100% digitales",
+          "Posicione a Vital Fit como referente tecnológico en el sector fitness"
+        ],
+        whatIsClosing: "No se trata de rehacer tu web. Se trata de crear un producto digital escalable que multiplique el valor de tu marca.",
+
+        whyDiagnosisTitle: "¿Por qué empezar con un diagnóstico?",
+        whyDiagnosisIcon: "🔍",
+        whyDiagnosisIntro: "Porque construir sin diagnóstico es tirar dinero. Antes de invertir en desarrollo, necesitamos responder:",
+        whyDiagnosisList: [
+          "¿Qué tipo de app generaría más ROI para Vital Fit?",
+          "¿Qué características valoran realmente tus clientes?",
+          "¿Cuál es el modelo de monetización óptimo? (add-on, standalone, freemium)",
+          "¿Qué contenidos tienen más demanda? (rutinas, nutrición, suplementación)",
+          "¿Qué NO hace falta construir? (evitar funcionalidades innecesarias)"
+        ],
+        whyDiagnosisClosing: "El diagnóstico garantiza que cada euro invertido en desarrollo genere retorno real.",
+
+        diagnosisTitle: "Diagnóstico Estratégico Digital",
+        diagnosisIcon: "📊",
+        diagnosisSubtitle: "Primera fase obligatoria",
+        diagnosisIncludes: "Qué incluye:",
+        diagnosisIncludesList: [
+          "Análisis de tipos de clientes y segmentación (gym, suplementos, mixto)",
+          "Estudio de madurez digital de tu audiencia",
+          "Benchmarking competitivo (qué hacen otros gimnasios premium)",
+          "Definición de propuesta de valor digital única",
+          "Modelo de negocio recomendado (pricing, tiers, add-ons)",
+          "Roadmap de producto priorizado por impacto/esfuerzo",
+          "Estimación de costes de desarrollo detallada por fase"
+        ],
+        diagnosisDeliverable: "Entregable: Documento ejecutivo con recomendación estratégica + presupuesto detallado de desarrollo",
+        diagnosisTimeline: "Plazo de entrega: 10-15 días laborables",
+        diagnosisPrice: "€900 - €1.200",
+        diagnosisInvestmentLabel: "Inversión en diagnóstico",
+        diagnosisPriceNote: "Deducible del presupuesto final si se aprueba el proyecto",
+
+        nextStepsTitle: "Proceso de colaboración",
+        nextStepsIcon: "🚀",
+        step1Title: "Diagnóstico",
+        step1Text: "Análisis estratégico y definición de producto óptimo",
+        step2Title: "Presupuesto",
+        step2Text: "Propuesta detallada basada en diagnóstico real",
+        step3Title: "Desarrollo",
+        step3Text: "Construcción de la app y ecosistema digital",
+
+        ctaIcon: "💡",
+        ctaTitle: "El diagnóstico es el primer paso",
+        ctaText1: "Sin diagnóstico = riesgo de construir algo que no se use",
+        ctaText2: "Con diagnóstico = inversión con ROI predecible y medible",
+        ctaText3: "Empecemos por entender qué necesita realmente Vital Fit",
+
+        footerText: "Business Bots Solutions — Desarrollo digital con estrategia"
+      },
+
+      en: {
+        partnershipBadge: "Business Bots × Vital Fit",
+        heroTitle: "Digital Collaboration Proposal",
+        heroSubtitle: "Digital transformation with prior strategic diagnosis",
+
+        whatIsTitle: "What is this project?",
+        whatIsIcon: "🎯",
+        whatIsIntro: "A strategic collaboration between Business Bots Solutions and Vital Fit to create a digital membership ecosystem that:",
+        whatIsList: [
+          "Generates recurring digital revenue complementary to the gym",
+          "Increases perceived value and customer loyalty",
+          "Opens a new revenue channel with 100% digital memberships",
+          "Positions Vital Fit as a technology leader in the fitness sector"
+        ],
+        whatIsClosing: "It's not about rebuilding your website. It's about creating a scalable digital product that multiplies your brand value.",
+
+        whyDiagnosisTitle: "Why start with a diagnosis?",
+        whyDiagnosisIcon: "🔍",
+        whyDiagnosisIntro: "Because building without diagnosis is wasting money. Before investing in development, we need to answer:",
+        whyDiagnosisList: [
+          "What type of app would generate the most ROI for Vital Fit?",
+          "What features do your customers really value?",
+          "What is the optimal monetization model? (add-on, standalone, freemium)",
+          "What content is most in demand? (routines, nutrition, supplementation)",
+          "What does NOT need to be built? (avoid unnecessary features)"
+        ],
+        whyDiagnosisClosing: "The diagnosis ensures that every euro invested in development generates real return.",
+
+        diagnosisTitle: "Strategic Digital Diagnosis",
+        diagnosisIcon: "📊",
+        diagnosisSubtitle: "Mandatory first phase",
+        diagnosisIncludes: "What it includes:",
+        diagnosisIncludesList: [
+          "Analysis of customer types and segmentation (gym, supplements, mixed)",
+          "Study of your audience's digital maturity",
+          "Competitive benchmarking (what other premium gyms do)",
+          "Definition of unique digital value proposition",
+          "Recommended business model (pricing, tiers, add-ons)",
+          "Product roadmap prioritized by impact/effort",
+          "Detailed development cost estimate by phase"
+        ],
+        diagnosisDeliverable: "Deliverable: Executive document with strategic recommendation + detailed development budget",
+        diagnosisTimeline: "Delivery time: 10-15 business days",
+        diagnosisPrice: "€900 - €1,200",
+        diagnosisInvestmentLabel: "Diagnosis investment",
+        diagnosisPriceNote: "Deductible from final budget if project is approved",
+
+        nextStepsTitle: "Collaboration process",
+        nextStepsIcon: "🚀",
+        step1Title: "Diagnosis",
+        step1Text: "Strategic analysis and optimal product definition",
+        step2Title: "Budget",
+        step2Text: "Detailed proposal based on real diagnosis",
+        step3Title: "Development",
+        step3Text: "App construction and digital ecosystem",
+
+        ctaIcon: "💡",
+        ctaTitle: "Diagnosis is the first step",
+        ctaText1: "Without diagnosis = risk of building something unused",
+        ctaText2: "With diagnosis = investment with predictable and measurable ROI",
+        ctaText3: "Let's start by understanding what Vital Fit really needs",
+
+        footerText: "Business Bots Solutions — Digital development with strategy"
+      },
+
+      it: {
+        partnershipBadge: "Business Bots × Vital Fit",
+        heroTitle: "Proposta di Collaborazione Digitale",
+        heroSubtitle: "Trasformazione digitale con diagnosi strategica preliminare",
+
+        whatIsTitle: "Cos'è questo progetto?",
+        whatIsIcon: "🎯",
+        whatIsIntro: "Una collaborazione strategica tra Business Bots Solutions e Vital Fit per creare un ecosistema digitale di membership che:",
+        whatIsList: [
+          "Genera entrate ricorrenti digitali complementari alla palestra",
+          "Aumenta il valore percepito e la fidelizzazione dei clienti",
+          "Apre un nuovo canale di entrate con membership 100% digitali",
+          "Posiziona Vital Fit come leader tecnologico nel settore fitness"
+        ],
+        whatIsClosing: "Non si tratta di rifare il sito. Si tratta di creare un prodotto digitale scalabile che moltiplica il valore del brand.",
+
+        whyDiagnosisTitle: "Perché iniziare con una diagnosi?",
+        whyDiagnosisIcon: "🔍",
+        whyDiagnosisIntro: "Perché costruire senza diagnosi è sprecare denaro. Prima di investire in sviluppo, dobbiamo rispondere:",
+        whyDiagnosisList: [
+          "Che tipo di app genererebbe più ROI per Vital Fit?",
+          "Quali caratteristiche apprezzano davvero i tuoi clienti?",
+          "Qual è il modello di monetizzazione ottimale? (add-on, standalone, freemium)",
+          "Quali contenuti sono più richiesti? (routine, nutrizione, integrazione)",
+          "Cosa NON serve costruire? (evitare funzionalità non necessarie)"
+        ],
+        whyDiagnosisClosing: "La diagnosi garantisce che ogni euro investito nello sviluppo generi un ritorno reale.",
+
+        diagnosisTitle: "Diagnosi Strategica Digitale",
+        diagnosisIcon: "📊",
+        diagnosisSubtitle: "Prima fase obbligatoria",
+        diagnosisIncludes: "Cosa include:",
+        diagnosisIncludesList: [
+          "Analisi dei tipi di clienti e segmentazione (palestra, integratori, misto)",
+          "Studio della maturità digitale del tuo pubblico",
+          "Benchmarking competitivo (cosa fanno altre palestre premium)",
+          "Definizione di proposta di valore digitale unica",
+          "Modello di business raccomandato (prezzi, livelli, add-on)",
+          "Roadmap di prodotto prioritizzato per impatto/sforzo",
+          "Stima dettagliata dei costi di sviluppo per fase"
+        ],
+        diagnosisDeliverable: "Consegna: Documento esecutivo con raccomandazione strategica + budget di sviluppo dettagliato",
+        diagnosisTimeline: "Tempo di consegna: 10-15 giorni lavorativi",
+        diagnosisPrice: "€900 - €1.200",
+        diagnosisInvestmentLabel: "Investimento diagnosi",
+        diagnosisPriceNote: "Deducibile dal budget finale se il progetto viene approvato",
+
+        nextStepsTitle: "Processo di collaborazione",
+        nextStepsIcon: "🚀",
+        step1Title: "Diagnosi",
+        step1Text: "Analisi strategica e definizione prodotto ottimale",
+        step2Title: "Budget",
+        step2Text: "Proposta dettagliata basata su diagnosi reale",
+        step3Title: "Sviluppo",
+        step3Text: "Costruzione app e ecosistema digitale",
+
+        ctaIcon: "💡",
+        ctaTitle: "La diagnosi è il primo passo",
+        ctaText1: "Senza diagnosi = rischio di costruire qualcosa di non utilizzato",
+        ctaText2: "Con diagnosi = investimento con ROI prevedibile e misurabile",
+        ctaText3: "Iniziamo a capire cosa ha davvero bisogno Vital Fit",
+
+        footerText: "Business Bots Solutions — Sviluppo digitale con strategia"
+      },
+
+      fr: {
+        partnershipBadge: "Business Bots × Vital Fit",
+        heroTitle: "Proposition de Collaboration Digitale",
+        heroSubtitle: "Transformation digitale avec diagnostic stratégique préalable",
+
+        whatIsTitle: "Qu'est-ce que ce projet?",
+        whatIsIcon: "🎯",
+        whatIsIntro: "Une collaboration stratégique entre Business Bots Solutions et Vital Fit pour créer un écosystème digital d'adhésion qui:",
+        whatIsList: [
+          "Génère des revenus récurrents digitaux complémentaires au gym",
+          "Augmente la valeur perçue et la fidélisation des clients",
+          "Ouvre un nouveau canal de revenus avec des adhésions 100% digitales",
+          "Positionne Vital Fit comme leader technologique dans le secteur fitness"
+        ],
+        whatIsClosing: "Il ne s'agit pas de refaire votre site. Il s'agit de créer un produit digital évolutif qui multiplie la valeur de votre marque.",
+
+        whyDiagnosisTitle: "Pourquoi commencer par un diagnostic?",
+        whyDiagnosisIcon: "🔍",
+        whyDiagnosisIntro: "Parce que construire sans diagnostic, c'est gaspiller de l'argent. Avant d'investir dans le développement, nous devons répondre:",
+        whyDiagnosisList: [
+          "Quel type d'app générerait le plus de ROI pour Vital Fit?",
+          "Quelles fonctionnalités vos clients apprécient-ils vraiment?",
+          "Quel est le modèle de monétisation optimal? (add-on, standalone, freemium)",
+          "Quels contenus sont les plus demandés? (routines, nutrition, supplémentation)",
+          "Qu'est-ce qui n'a PAS besoin d'être construit? (éviter les fonctionnalités inutiles)"
+        ],
+        whyDiagnosisClosing: "Le diagnostic garantit que chaque euro investi dans le développement génère un retour réel.",
+
+        diagnosisTitle: "Diagnostic Stratégique Digital",
+        diagnosisIcon: "📊",
+        diagnosisSubtitle: "Première phase obligatoire",
+        diagnosisIncludes: "Ce qu'il inclut:",
+        diagnosisIncludesList: [
+          "Analyse des types de clients et segmentation (gym, suppléments, mixte)",
+          "Étude de la maturité digitale de votre audience",
+          "Benchmarking concurrentiel (ce que font les autres gyms premium)",
+          "Définition de proposition de valeur digitale unique",
+          "Modèle d'affaires recommandé (prix, niveaux, add-ons)",
+          "Roadmap de produit priorisé par impact/effort",
+          "Estimation détaillée des coûts de développement par phase"
+        ],
+        diagnosisDeliverable: "Livrable: Document exécutif avec recommandation stratégique + budget de développement détaillé",
+        diagnosisTimeline: "Délai de livraison: 10-15 jours ouvrables",
+        diagnosisPrice: "€900 - €1.200",
+        diagnosisInvestmentLabel: "Investissement diagnostic",
+        diagnosisPriceNote: "Déductible du budget final si le projet est approuvé",
+
+        nextStepsTitle: "Processus de collaboration",
+        nextStepsIcon: "🚀",
+        step1Title: "Diagnostic",
+        step1Text: "Analyse stratégique et définition produit optimal",
+        step2Title: "Budget",
+        step2Text: "Proposition détaillée basée sur diagnostic réel",
+        step3Title: "Développement",
+        step3Text: "Construction app et écosystème digital",
+
+        ctaIcon: "💡",
+        ctaTitle: "Le diagnostic est la première étape",
+        ctaText1: "Sans diagnostic = risque de construire quelque chose d'inutilisé",
+        ctaText2: "Avec diagnostic = investissement avec ROI prévisible et mesurable",
+        ctaText3: "Commençons par comprendre ce dont Vital Fit a vraiment besoin",
+
+        footerText: "Business Bots Solutions — Développement digital avec stratégie"
+      },
+
+      de: {
+        partnershipBadge: "Business Bots × Vital Fit",
+        heroTitle: "Digitale Kooperationsvorschlag",
+        heroSubtitle: "Digitale Transformation mit vorheriger strategischer Diagnose",
+
+        whatIsTitle: "Was ist dieses Projekt?",
+        whatIsIcon: "🎯",
+        whatIsIntro: "Eine strategische Zusammenarbeit zwischen Business Bots Solutions und Vital Fit, um ein digitales Mitgliedschafts-Ökosystem zu schaffen, das:",
+        whatIsList: [
+          "Wiederkehrende digitale Einnahmen ergänzend zum Fitnessstudio generiert",
+          "Wahrgenommenen Wert und Kundenbindung erhöht",
+          "Einen neuen Einnahmekanal mit 100% digitalen Mitgliedschaften öffnet",
+          "Vital Fit als Technologieführer im Fitness-Sektor positioniert"
+        ],
+        whatIsClosing: "Es geht nicht darum, Ihre Website neu zu machen. Es geht darum, ein skalierbares digitales Produkt zu schaffen, das Ihren Markenwert multipliziert.",
+
+        whyDiagnosisTitle: "Warum mit einer Diagnose beginnen?",
+        whyDiagnosisIcon: "🔍",
+        whyDiagnosisIntro: "Weil Bauen ohne Diagnose Geldverschwendung ist. Bevor wir in die Entwicklung investieren, müssen wir antworten:",
+        whyDiagnosisList: [
+          "Welche Art von App würde den meisten ROI für Vital Fit generieren?",
+          "Welche Funktionen schätzen Ihre Kunden wirklich?",
+          "Was ist das optimale Monetarisierungsmodell? (Add-on, Standalone, Freemium)",
+          "Welche Inhalte sind am meisten gefragt? (Routinen, Ernährung, Nahrungsergänzung)",
+          "Was muss NICHT gebaut werden? (unnötige Funktionen vermeiden)"
+        ],
+        whyDiagnosisClosing: "Die Diagnose garantiert, dass jeder in die Entwicklung investierte Euro echten Return generiert.",
+
+        diagnosisTitle: "Strategische Digitale Diagnose",
+        diagnosisIcon: "📊",
+        diagnosisSubtitle: "Obligatorische erste Phase",
+        diagnosisIncludes: "Was es beinhaltet:",
+        diagnosisIncludesList: [
+          "Analyse der Kundentypen und Segmentierung (Fitnessstudio, Nahrungsergänzung, gemischt)",
+          "Studie der digitalen Reife Ihres Publikums",
+          "Wettbewerbs-Benchmarking (was andere Premium-Fitnessstudios tun)",
+          "Definition eines einzigartigen digitalen Wertversprechens",
+          "Empfohlenes Geschäftsmodell (Preise, Stufen, Add-ons)",
+          "Produkt-Roadmap priorisiert nach Wirkung/Aufwand",
+          "Detaillierte Schätzung der Entwicklungskosten nach Phase"
+        ],
+        diagnosisDeliverable: "Liefergegenstand: Executive-Dokument mit strategischer Empfehlung + detailliertem Entwicklungsbudget",
+        diagnosisTimeline: "Lieferzeit: 10-15 Werktage",
+        diagnosisPrice: "€900 - €1.200",
+        diagnosisInvestmentLabel: "Diagnose-Investition",
+        diagnosisPriceNote: "Vom Endbudget abzugsfähig, wenn das Projekt genehmigt wird",
+
+        nextStepsTitle: "Kooperationsprozess",
+        nextStepsIcon: "🚀",
+        step1Title: "Diagnose",
+        step1Text: "Strategische Analyse und optimale Produktdefinition",
+        step2Title: "Budget",
+        step2Text: "Detaillierter Vorschlag basierend auf echter Diagnose",
+        step3Title: "Entwicklung",
+        step3Text: "App-Konstruktion und digitales Ökosystem",
+
+        ctaIcon: "💡",
+        ctaTitle: "Die Diagnose ist der erste Schritt",
+        ctaText1: "Ohne Diagnose = Risiko, etwas Ungenutztes zu bauen",
+        ctaText2: "Mit Diagnose = Investition mit vorhersehbarem und messbarem ROI",
+        ctaText3: "Beginnen wir damit zu verstehen, was Vital Fit wirklich braucht",
+
+        footerText: "Business Bots Solutions — Digitale Entwicklung mit Strategie"
+      }
+    };
+
+    let currentLang = 'es';
+
+    function renderContent() {
+      const t = translations[currentLang];
+      const content = document.getElementById('content');
+      
+      content.innerHTML = `
+        <div class="fade-in">
+          <!-- Hero -->
+          <header class="hero-section">
+            <div class="partnership-badge" id="company-partnership">${t.partnershipBadge}</div>
+            <h1 id="main-title">${t.heroTitle}</h1>
+            <p class="subtitle">${t.heroSubtitle}</p>
+          </header>
+
+          <!-- What Is This Project -->
+          <section class="proposal-card">
+            <div class="card-header">
+              <div class="card-icon">${t.whatIsIcon}</div>
+              <h2>${t.whatIsTitle}</h2>
+            </div>
+            <div class="card-content">
+              <p>${t.whatIsIntro}</p>
+              <ul>
+                ${t.whatIsList.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+              <p style="margin-top: 20px; font-weight: 600; color: #FFD700;">${t.whatIsClosing}</p>
+            </div>
+          </section>
+
+          <!-- Why Diagnosis -->
+          <section class="proposal-card">
+            <div class="card-header">
+              <div class="card-icon">${t.whyDiagnosisIcon}</div>
+              <h2>${t.whyDiagnosisTitle}</h2>
+            </div>
+            <div class="card-content">
+              <p>${t.whyDiagnosisIntro}</p>
+              <ul>
+                ${t.whyDiagnosisList.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+              <p style="margin-top: 20px; font-weight: 600; color: #51cf66;">${t.whyDiagnosisClosing}</p>
+            </div>
+          </section>
+
+          <!-- Strategic Diagnosis -->
+          <section class="proposal-card">
+            <div class="card-header">
+              <div class="card-icon">${t.diagnosisIcon}</div>
+              <div>
+                <h2 id="diagnosis-title">${t.diagnosisTitle}</h2>
+                <p style="color: rgba(255, 255, 255, 0.85); font-size: 16px; margin-top: 5px;">${t.diagnosisSubtitle}</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>${t.diagnosisIncludes}</h3>
+              <ul>
+                ${t.diagnosisIncludesList.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+              <p style="margin-top: 25px; font-weight: 600;">${t.diagnosisDeliverable}</p>
+              <p style="margin-top: 12px; color: rgba(255, 255, 255, 0.9);">${t.diagnosisTimeline}</p>
+            </div>
+
+            <div class="highlight-box">
+              <p class="price-label" id="investment-label">${t.diagnosisInvestmentLabel}</p>
+              <div class="price">${t.diagnosisPrice}</div>
+              <p class="price-note">${t.diagnosisPriceNote}</p>
+            </div>
+          </section>
+
+          <!-- Process -->
+          <section class="proposal-card">
+            <div class="card-header">
+              <div class="card-icon">${t.nextStepsIcon}</div>
+              <h2>${t.nextStepsTitle}</h2>
+            </div>
+            
+            <div class="process-grid">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>${t.step1Title}</h3>
+                <p>${t.step1Text}</p>
+              </div>
+
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>${t.step2Title}</h3>
+                <p>${t.step2Text}</p>
+              </div>
+
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>${t.step3Title}</h3>
+                <p>${t.step3Text}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- CTA -->
+          <div class="cta-section">
+            <div class="cta-icon">${t.ctaIcon}</div>
+            <h2>${t.ctaTitle}</h2>
+            <p>${t.ctaText1}</p>
+            <p>${t.ctaText2}</p>
+            <p style="font-weight: 700; margin-top: 15px; font-size: 21px;">${t.ctaText3}</p>
+          </div>
+
+          <!-- Footer -->
+          <footer class="footer">
+            <p>${t.footerText}</p>
+          </footer>
+        </div>
+      `;
+    }
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      renderContent();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderContent();
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          switchLanguage(btn.dataset.lang);
+        });
+      });
+    });
+
+    // Element SDK
+    const defaultConfig = {
+      main_title: "Propuesta de Colaboración Digital",
+      company_partnership: "Business Bots × Vital Fit",
+      diagnosis_title: "Diagnóstico Estratégico Digital",
+      investment_label: "Inversión en diagnóstico"
+    };
+
+    const element = {
+      defaultConfig,
+      
+      onConfigChange: async (config) => {
+        const titleEl = document.getElementById('main-title');
+        const partnershipEl = document.getElementById('company-partnership');
+        const diagnosisEl = document.getElementById('diagnosis-title');
+        const investmentEl = document.getElementById('investment-label');
+        
+        if (titleEl) titleEl.textContent = config.main_title || defaultConfig.main_title;
+        if (partnershipEl) partnershipEl.textContent = config.company_partnership || defaultConfig.company_partnership;
+        if (diagnosisEl) diagnosisEl.textContent = config.diagnosis_title || defaultConfig.diagnosis_title;
+        if (investmentEl) investmentEl.textContent = config.investment_label || defaultConfig.investment_label;
+      },
+      
+      mapToCapabilities: () => ({
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      
+      mapToEditPanelValues: (config) => new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["company_partnership", config.company_partnership || defaultConfig.company_partnership],
+        ["diagnosis_title", config.diagnosis_title || defaultConfig.diagnosis_title],
+        ["investment_label", config.investment_label || defaultConfig.investment_label]
+      ])
+    };
+
+    if (window.elementSdk) {
+      window.elementSdk.init(element);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b54348a30cdcc40',t:'MTc2Njk1NzkxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
